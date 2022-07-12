@@ -31,7 +31,7 @@ int main()
 	
     while (true)
     {
-        // обнуляет переменные
+        // setting the initial value of variables
         move_legal = false;
         filled_fields = 0;
 	    
@@ -94,7 +94,7 @@ int main()
         cin >> player_move_column;
         player_move_column--;
 	    
-        // проверяет, возможен ли ход игрока 
+        // check player's move for feasibility
         if (board[player_move_row][player_move_column] == '.')
         {
            board[player_move_row][player_move_column] = 'X';
