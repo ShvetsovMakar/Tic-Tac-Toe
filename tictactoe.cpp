@@ -3,28 +3,32 @@
 #include <ctime>
 using namespace std;
 
+const int ROWS = 3;
+const int COLUMNS = 3;
+
 int main()
 {
     srand(static_cast<unsigned int>(time(0)));
-
-    const int ROWS = 3;
-	const int COLUMNS = 3;
-	char board[ROWS][COLUMNS] =    {
-					                {'.', '.', '.'},
-					                {'.', '.', '.'},
-					                {'.', '.', '.'}
-				       		       };
-    int move;
-    int o_move[2];
+    // объявляет/инициализирует переменные/массивы
+	char board[ROWS][COLUMNS] = {
+					{'.', '.', '.'},
+					{'.', '.', '.'},
+					{'.', '.', '.'}
+				    };
     int x_move[2];
+    int o_move[2];
+	int move;
     int filled_fields = 0;
-    bool x_won = false;
-    bool o_won = false;
+	bool x_won = false;
+    bool o_won = false;			    
     bool move_legal = false;
+    // игровой цикл
     while (true)
     {
+        // обнуляет переменные
         move_legal = false;
         filled_fields = 0;
+        // отображает доску
         cout << "            ___\n";
         for (int i = 0; i < ROWS; ++i)
         {
@@ -37,6 +41,7 @@ int main()
             cout << "|" << endl;
         }
         cout << "            ¯¯¯\n";
+        // проверяет, окончилась ли игра
         if ((board[0][0] == 'O' && board [1][1] == 'O' && board[2][2] == 'O') or (board[2][0] == 'O' && board [1][1] == 'O' && board[0][2] == 'O'))
         {
             cout << "I won!";
@@ -63,6 +68,7 @@ int main()
             cout << "I won!";
             break;
         }
+        // узнает ход игрока
         cout << "Your turn";
         cout << "\nRow number: ";
         cin >> x_move[0];
@@ -70,7 +76,7 @@ int main()
         cout << "Column number: ";
         cin >> x_move[1];
         x_move[1]--;
-
+        // проверяет, возможен ли ход игрока 
         if (board[x_move[0]][x_move[1]] == '.')
         {
            board[x_move[0]][x_move[1]] = 'X';
@@ -80,6 +86,7 @@ int main()
             cout << "Your move is illegal\n";
             continue;
         }
+        // отображает доску
         cout << "            ___\n";
         for (int i = 0; i < ROWS; ++i)
         {
@@ -92,6 +99,7 @@ int main()
             cout << "|" << endl;
         }
         cout << "            ¯¯¯\n";
+        // проверяет, окончилась ли игра
         if ((board[0][0] == 'X' && board [1][1] == 'X' && board[2][2] == 'X') or (board[2][0] == 'X' && board [1][1] == 'X' && board[0][2] == 'X'))
         {
             cout << "You won!";
@@ -133,6 +141,7 @@ int main()
             cout << "Draw!";
             break;
         }
+        // ищет возможный ход
         while (!move_legal)
         {
             move = rand() % 9 + 1;
