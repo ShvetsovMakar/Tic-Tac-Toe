@@ -9,7 +9,7 @@ const int COLUMNS = 3;
 int main()
 {
     srand(static_cast<unsigned int>(time(0)));
-    // объявляет/инициализирует переменные/массивы
+    // объявляет/инициализирует переменные и массив
 	char board[ROWS][COLUMNS] = {
 					{'.', '.', '.'},
 					{'.', '.', '.'},
