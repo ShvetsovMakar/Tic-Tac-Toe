@@ -16,24 +16,26 @@ int main()
 					{'.', '.', '.'},
 					{'.', '.', '.'}
 				    };
-    int x_move[2];
-    int o_move[2];
+    int player_move_row;
+    int player_move_column;
+    int computer_move_row;
+    int computer_move_column;
 	
-    int move;
+    int probable_move;
+	
     int filled_fields = 0;
-    
-    bool x_won = false;
-    bool o_won = false;			    
+	
+    bool player_won = false;
+    bool computer_won = false;			    
     bool move_legal = false;
 	
-    // игровой цикл
     while (true)
     {
         // обнуляет переменные
         move_legal = false;
         filled_fields = 0;
 	    
-        // отображает доску
+        // board display
         cout << "            ___\n";
         
 	for (int i = 0; i < ROWS; ++i)
@@ -50,7 +52,7 @@ int main()
         
 	cout << "            ¯¯¯\n";
         
-	// проверяет, окончилась ли игра
+	// game ending check
         if ((board[0][0] == 'O' && board [1][1] == 'O' && board[2][2] == 'O') or (board[2][0] == 'O' && board [1][1] == 'O' && board[0][2] == 'O'))
         {
             cout << "I won!";
@@ -61,7 +63,7 @@ int main()
         {
             if (board[i][0] == 'O' && board[i][1] == 'O' && board[i][2] == 'O')
             {
-                o_won = true;
+                computer_won = true;
                 break;
             }
         }
@@ -70,32 +72,32 @@ int main()
         {
             if (board[0][i] == 'O' && board[1][i] == 'O' && board[2][i] == 'O')
             {
-                o_won = true;
+                computer_won = true;
                 break;
             }
         }
 	    
-        if (o_won == true)
+        if (player_won == true)
         {
             cout << "I won!";
             break;
         }
 	    
-        // узнает ход игрока
+        // gets player's move
         cout << "Your turn";
 	    
         cout << "\nRow number: ";
-        cin >> x_move[0];
-        x_move[0]--;
+        cin >> player_move_row;
+        player_move_row--;
 	   
         cout << "Column number: ";
-        cin >> x_move[1];
-        x_move[1]--;
+        cin >> player_move_column;
+        player_move_column--;
 	    
         // проверяет, возможен ли ход игрока 
-        if (board[x_move[0]][x_move[1]] == '.')
+        if (board[player_move_row][player_move_column] == '.')
         {
-           board[x_move[0]][x_move[1]] = 'X';
+           board[player_move_row][player_move_column] = 'X';
         }
         else
         {
@@ -103,7 +105,7 @@ int main()
             continue;
         }
 	    
-        // отображает доску
+        // board display
         cout << "            ___\n";
 	    
         for (int i = 0; i < ROWS; ++i)
@@ -119,7 +121,7 @@ int main()
 	    
         cout << "            ¯¯¯\n";
 	    
-        // проверяет, окончилась ли игра
+        // game ending check
         if ((board[0][0] == 'X' && board [1][1] == 'X' && board[2][2] == 'X') or (board[2][0] == 'X' && board [1][1] == 'X' && board[0][2] == 'X'))
         {
             cout << "You won!";
@@ -130,7 +132,7 @@ int main()
         {
             if (board[i][0] == 'X' && board[i][1] == 'X' && board[i][2] == 'X')
             {
-                x_won = true;
+                player_won = true;
                 break;
             }
         }
@@ -139,12 +141,12 @@ int main()
         {
             if (board[0][i] == 'X' && board[1][i] == 'X' && board[2][i] == 'X')
             {
-                x_won = true;
+                player_won = true;
                 break;
             }
         }
 	    
-        if (x_won == true)
+        if (player_won == true)
         {
             cout << "You won!";
             break;
@@ -167,40 +169,40 @@ int main()
             break;
         }
 	    
-        // ищет возможный ход
+        // search for a possible move
         while (!move_legal)
         {
-            move = rand() % 9 + 1;
+            probable_move = rand() % 9 + 1;
 
-            if (move == 1 || move == 2 || move == 3)
+            if (probable_move == 1 || probable_move == 2 || probable_move == 3)
             {
-                o_move[0] = 0;
+                computer_move_row = 0;
             }
-            else if (move == 4 || move == 5 || move == 6)
+            else if (probable_move == 4 || probable_move == 5 || probable_move == 6)
             {
-                o_move[0] = 1;
+                computer_move_row = 1;
             }
-            else if (move == 7 || move == 8 || move == 9)
+            else if (probable_move == 7 || probable_move == 8 || probable_move == 9)
             {
-                o_move[0] = 2;
-            }
-
-            if (move == 1 || move == 4 || move == 7)
-            {
-                o_move[1] = 0;
-            }
-            else if (move == 2 || move == 5 || move == 8)
-            {
-                o_move[1] = 1;
-            }
-            else if (move == 3 || move == 6 || move == 9)
-            {
-                o_move[1] = 2;
+                computer_move_row = 2;
             }
 
-            if (board[o_move[0]][o_move[1]] == '.')
+            if (probable_move == 1 || probable_move == 4 || probable_move == 7)
             {
-                board[o_move[0]][o_move[1]] = 'O';
+                computer_move_column = 0;
+            }
+            else if (probable_move == 2 || probable_move == 5 || probable_move == 8)
+            {
+                computer_move_column = 1;
+            }
+            else if (probable_move == 3 || probable_move == 6 || probable_move == 9)
+            {
+                computer_move_column = 2;
+            }
+
+            if (board[computer_move_row][computer_move_column] == '.')
+            {
+                board[computer_move_row][computer_move_column] = 'O';
                 move_legal = true;
             }
         }
