@@ -31,7 +31,7 @@ int main()
 	
     while (true)
     {
-        // setting the initial value of variables
+        // setting the initial value to variables
         move_legal = false;
         filled_fields = 0;
 	    
