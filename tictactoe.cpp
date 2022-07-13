@@ -7,11 +7,9 @@ using namespace std;
 // initialization of constants and board
 const int ROWS = 3;
 const int COLUMNS = 3;
-char board[ROWS][COLUMNS] = {
-				{'.', '.', '.'},
-				{'.', '.', '.'},
-				{'.', '.', '.'}
-			    };
+char board[ROWS][COLUMNS] = {{'.', '.', '.'},
+			     {'.', '.', '.'},
+			     {'.', '.', '.'}};
 
 char game_ending_check()
 {
@@ -81,6 +79,7 @@ char game_ending_check()
     {
         return 'd';
     }
+    return '.';
 }
 
 void board_display()
@@ -106,11 +105,15 @@ int main()
 {
     srand(static_cast<unsigned int>(time(0)));
 
-    // declaration of local variables
+    // declaration and initialization of local variables and array
     int player_move_row;
     int player_move_column;
     int computer_move_row;
     int computer_move_column;
+
+    int moves[9][2] = {{0, 0}, {0, 1}, {0, 2},
+		      {1, 0}, {1, 1}, {1, 2},
+		      {2, 0}, {2, 1}, {2, 2}};
 	
     int probable_move;
 	
@@ -179,33 +182,10 @@ int main()
         // search for a possible move
         while (true)
         {
-            probable_move = rand() % 9 + 1;
+            probable_move = rand() % 9;
 
-            if (probable_move == 1 || probable_move == 2 || probable_move == 3)
-            {
-                computer_move_row = 0;
-            }
-            else if (probable_move == 4 || probable_move == 5 || probable_move == 6)
-            {
-                computer_move_row = 1;
-            }
-            else if (probable_move == 7 || probable_move == 8 || probable_move == 9)
-            {
-                computer_move_row = 2;
-            }
-
-            if (probable_move == 1 || probable_move == 4 || probable_move == 7)
-            {
-                computer_move_column = 0;
-            }
-            else if (probable_move == 2 || probable_move == 5 || probable_move == 8)
-            {
-                computer_move_column = 1;
-            }
-            else if (probable_move == 3 || probable_move == 6 || probable_move == 9)
-            {
-                computer_move_column = 2;
-            }
+            computer_move_row = moves[probable_move][0];
+	    computer_move_column = moves[probable_move][1];
 
             if (board[computer_move_row][computer_move_column] == '.')
             {
