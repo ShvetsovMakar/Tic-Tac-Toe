@@ -100,7 +100,7 @@ int main()
         // board display
         cout << "            ___\n";
         
-	    for (int i = 0; i < ROWS; ++i)
+	for (int i = 0; i < ROWS; ++i)
         {
             cout << "           |";
 		
@@ -115,21 +115,21 @@ int main()
 	    cout << "            ¯¯¯\n";
 	
         // game ending check
-	    if (game_ending_check() == 'l')
-	    {
-	        cout << "You won!";
-	        break;
-	    }
-	    else if (game_ending_check() == 'd')
-	    {
+	if (game_ending_check() == 'l')
+	{
+	    cout << "You won!";
+	    break;
+	}
+	else if (game_ending_check() == 'd')
+	{
             cout << "Draw!";
-	        break;
-	    }
-	    else if (game_ending_check() == 'w')
-	    {
-	        cout << "I won";
-	        break;
-	    }
+	    break;
+	}
+	else if (game_ending_check() == 'w')
+	{
+	    cout << "I won";
+	    break;
+	}
 	    
         // gets player's move
         cout << "Your turn";
@@ -174,13 +174,13 @@ int main()
         if (game_ending_check() == 'l')
         {
             cout << "You won!";
-	        break;
-	    }
+	    break;
+	}
     	else if (game_ending_check() == 'd')
-	    {
+	{
             cout << "Draw!";
             break;
-	    }
+	}
         else if (game_ending_check() == 'w')
         {
             cout << "I won";
