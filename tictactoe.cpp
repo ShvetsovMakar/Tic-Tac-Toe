@@ -83,6 +83,25 @@ char game_ending_check()
     }
 }
 
+void board_display()
+{
+    cout << "            ___\n";
+        
+    for (int i = 0; i < ROWS; ++i)
+    {
+        cout << "           |";
+		
+        for (int j = 0; j < COLUMNS; ++j)
+	    {
+                cout << board[i][j];
+	    }
+
+        cout << "|" << endl;
+    }
+        
+     cout << "            ¯¯¯\n";
+}	
+
 int main()
 {
     srand(static_cast<unsigned int>(time(0)));
@@ -97,22 +116,7 @@ int main()
 	
     while (true)
     {
-        // board display
-        cout << "            ___\n";
-        
-	for (int i = 0; i < ROWS; ++i)
-        {
-            cout << "           |";
-		
-            for (int j = 0; j < COLUMNS; ++j)
-	        {
-                    cout << board[i][j];
-	        }
-
-            cout << "|" << endl;
-        }
-        
-	cout << "            ¯¯¯\n";
+	board_display();
 	
         // game ending check
 	if (game_ending_check() == 'l')
@@ -153,22 +157,7 @@ int main()
             continue;
         }
 	    
-        // board display
-        cout << "            ___\n";
-        
-        for (int i = 0; i < ROWS; ++i)
-        {
-            cout << "           |";
-            
-            for (int j = 0; j < COLUMNS; ++j)
-            {
-                cout << board[i][j];
-            }
-            
-            cout << "|" << endl;
-        }
-        
-        cout << "            ¯¯¯\n";
+	board_display();
 	    
         // game ending check
         if (game_ending_check() == 'l')
