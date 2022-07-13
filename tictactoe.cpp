@@ -112,7 +112,7 @@ int main()
             cout << "|" << endl;
         }
         
-	    cout << "            ¯¯¯\n";
+	cout << "            ¯¯¯\n";
 	
         // game ending check
 	if (game_ending_check() == 'l')
