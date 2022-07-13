@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// declaration and initialization of constants, board and global variables
+// initialization of constants and board
 const int ROWS = 3;
 const int COLUMNS = 3;
 char board[ROWS][COLUMNS] = {
@@ -12,12 +12,14 @@ char board[ROWS][COLUMNS] = {
 				{'.', '.', '.'},
 				{'.', '.', '.'}
 			    };
-bool player_won = false;
-bool computer_won = false;
-int filled_fields = 0;
 
 char game_ending_check()
 {
+    // initialization of local variables
+    bool player_won = false;
+    bool computer_won = false;
+    int filled_fields = 0;
+
     if ((board[0][0] == 'X' && board [1][1] == 'X' && board[2][2] == 'X') or (board[2][0] == 'X' && board [1][1] == 'X' && board[0][2] == 'X'))
     {
 	    return 'l';
@@ -85,7 +87,7 @@ int main()
 {
     srand(static_cast<unsigned int>(time(0)));
 
-    // declaration and initialization of local variables
+    // declaration of local variables
     int player_move_row;
     int player_move_column;
     int computer_move_row;
@@ -93,14 +95,8 @@ int main()
 	
     int probable_move;
 	
-	bool move_legal = false;
-	
     while (true)
     {
-        // setting the initial value to variables
-        move_legal = false;
-        filled_fields = 0;
-	    
         // board display
         cout << "            ___\n";
         
@@ -115,82 +111,84 @@ int main()
 
             cout << "|" << endl;
         }
-	cout << "            ¯¯¯\n";
+        
+	    cout << "            ¯¯¯\n";
 	
-    // game ending check
-	if (game_ending_check() == 'l')
-	{
-	    cout << "You won!";
-	    break;
-	}
-	else if (game_ending_check() == 'd')
-	{
-	    cout << "Draw!";
-	    break;
-	}
-	else if (game_ending_check() == 'w')
-	{
-	    cout << "I won";
-	    break;
-	}
+        // game ending check
+	    if (game_ending_check() == 'l')
+	    {
+	        cout << "You won!";
+	        break;
+	    }
+	    else if (game_ending_check() == 'd')
+	    {
+            cout << "Draw!";
+	        break;
+	    }
+	    else if (game_ending_check() == 'w')
+	    {
+	        cout << "I won";
+	        break;
+	    }
 	    
-    // gets player's move
-    cout << "Your turn";
+        // gets player's move
+        cout << "Your turn";
 	    
-    cout << "\nRow number: ";
-    cin >> player_move_row;
-    player_move_row--;
+        cout << "\nRow number: ";
+        cin >> player_move_row;
+        player_move_row--;
 	   
-    cout << "Column number: ";
-    cin >> player_move_column;
-    player_move_column--;
+        cout << "Column number: ";
+        cin >> player_move_column;
+        player_move_column--;
 	    
-    // check player's move for feasibility
-    if (board[player_move_row][player_move_column] == '.')
-    {
-        board[player_move_row][player_move_column] = 'X';
-    }
-    else
-    {
-        cout << "Your move is illegal\n";
-        continue;
-    }
-	    
-    // board display
-    cout << "            ___\n";
-	    
-    for (int i = 0; i < ROWS; ++i)
-    {
-        cout << "           |";
-        for (int j = 0; j < COLUMNS; ++j)
+        // check player's move for feasibility
+        if (board[player_move_row][player_move_column] == '.')
         {
-            cout << board[i][j];
+            board[player_move_row][player_move_column] = 'X';
         }
-
-        cout << "|" << endl;
-    }
+        else
+        {
+            cout << "Your move is illegal\n";
+            continue;
+        }
 	    
+        // board display
+        cout << "            ___\n";
+        
+        for (int i = 0; i < ROWS; ++i)
+        {
+            cout << "           |";
+            
+            for (int j = 0; j < COLUMNS; ++j)
+            {
+                cout << board[i][j];
+            }
+            
+            cout << "|" << endl;
+        }
+        
         cout << "            ¯¯¯\n";
 	    
-    // game ending check
-    if (game_ending_check() == 'l')
-    {
-        cout << "You won!";
-	    break;
-	}
-	else if (game_ending_check() == 'd')
-	{
-        cout << "Draw!";
-        break;
-	}
-    else if (game_ending_check() == 'w')
-    {
-        cout << "I won";
-        break;
-    }
+        // game ending check
+        if (game_ending_check() == 'l')
+        {
+            cout << "You won!";
+	        break;
+	    }
+    	else if (game_ending_check() == 'd')
+	    {
+            cout << "Draw!";
+            break;
+	    }
+        else if (game_ending_check() == 'w')
+        {
+            cout << "I won";
+            break;
+        }
 	    
         // search for a possible move
-        while (!move_legal)
+        while (true)
         {
             probable_move = rand() % 9 + 1;
 
@@ -223,7 +221,7 @@ int main()
             if (board[computer_move_row][computer_move_column] == '.')
             {
                 board[computer_move_row][computer_move_column] = 'O';
-                move_legal = true;
+                break;
             }
         }
     }
