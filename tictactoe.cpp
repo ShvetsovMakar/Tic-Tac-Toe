@@ -131,7 +131,7 @@ int main()
 	    break;
 	}
 	    
-        // gets player's move
+        // getting player's move
         cout << "Your turn";
 	    
         cout << "\nRow number: ";
