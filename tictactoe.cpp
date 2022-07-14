@@ -18,6 +18,7 @@ char game_ending_check()
 
     if ((board[0][0] == 'X' && board [1][1] == 'X' && board[2][2] == 'X') or (board[2][0] == 'X' && board [1][1] == 'X' && board[0][2] == 'X'))
     {
+        cout << "You won!";
         return 2;
     }
 
@@ -25,6 +26,7 @@ char game_ending_check()
     {
         if (board[i][0] == 'X' && board[i][1] == 'X' && board[i][2] == 'X')
         {
+            cout << "You won!";
             return 2;
         }
     }
@@ -33,12 +35,14 @@ char game_ending_check()
     {
         if (board[0][i] == 'X' && board[1][i] == 'X' && board[2][i] == 'X')
         {
+            cout << "You won!";
             return 2;
         }
     }
 
     if ((board[0][0] == 'O' && board [1][1] == 'O' && board[2][2] == 'O') or (board[2][0] == 'O' && board [1][1] == 'O' && board[0][2] == 'O'))
     {
+        cout << "I won";
         return 1;
     }
 
@@ -46,6 +50,7 @@ char game_ending_check()
     {
         if (board[i][0] == 'O' && board[i][1] == 'O' && board[i][2] == 'O')
         {
+            cout << "I won";
             return 1;
         }
     }
@@ -54,6 +59,7 @@ char game_ending_check()
     {
         if (board[0][i] == 'O' && board[1][i] == 'O' && board[2][i] == 'O')
         {
+            cout << "I won";
             return 1;
         }
     }
@@ -64,16 +70,18 @@ char game_ending_check()
         {
             if (board[i][j] != '.')
             {
-                filled_fields += 1;
+                filled_fields++;
             }
         }
     }
 
     if (filled_fields == 9)
     {
+        cout << "Draw";
         return 0;
     }
-    return '.';
+
+    return -1;
 }
 
 void board_display()
@@ -116,19 +124,8 @@ int main()
         board_display();
 
         // game ending check
-        if (game_ending_check() == 2)
-        {
-            cout << "You won!";
-            break;
-        }
-        else if (game_ending_check() == 0)
-        {
-            cout << "Draw!";
-            break;
-        }
-        else if (game_ending_check() == 1)
-        {
-            cout << "I won";
+        char is_end = game_ending_check();
+        if (is_end >= 0 && is_end <= 2) {
             break;
         }
 
@@ -157,19 +154,8 @@ int main()
         board_display();
 
         // game ending check
-        if (game_ending_check() == 2)
-        {
-            cout << "You won!";
-            break;
-        }
-        else if (game_ending_check() == 0)
-        {
-            cout << "Draw!";
-            break;
-        }
-        else if (game_ending_check() == 1)
-        {
-            cout << "I won";
+        is_end = game_ending_check();
+        if (is_end >= 0 && is_end <= 2) {
             break;
         }
 
