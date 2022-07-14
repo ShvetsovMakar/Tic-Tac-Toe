@@ -110,8 +110,6 @@ int main()
 	// declaration and initialization of local variables and array
 	int player_move_row;
 	int player_move_column;
-	int computer_move_row;
-	int computer_move_column;
 
 	int moves[9][2] = {{0, 0}, {0, 1}, {0, 2},
 					   {1, 0}, {1, 1}, {1, 2},
@@ -161,13 +159,10 @@ int main()
 		while (true)
 		{
 			int probable_move = rand() % 9;
-
-			computer_move_row = moves[probable_move][0];
-			computer_move_column = moves[probable_move][1];
-
-			if (board[computer_move_row][computer_move_column] == '.')
+			
+			if (board[moves[probable_move][0]][moves[probable_move][1]] == '.')
 			{
-				board[computer_move_row][computer_move_column] = 'O';
+				board[moves[probable_move][0]][moves[probable_move][1]] == 'O';
 				break;
 			}
 		}
