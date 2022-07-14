@@ -13,13 +13,13 @@ char board[ROWS][COLUMNS] = {{'.', '.', '.'},
 
 char game_ending_check()
 {
-    // initialization of local variables
+    // initialization of local variable
     int filled_fields = 0;
 
     if ((board[0][0] == 'X' && board [1][1] == 'X' && board[2][2] == 'X') or (board[2][0] == 'X' && board [1][1] == 'X' && board[0][2] == 'X'))
     {
         cout << "You won!";
-        return 2;
+        return 0;
     }
 
     for (int i = 0; i < ROWS; ++i)
@@ -27,7 +27,7 @@ char game_ending_check()
         if (board[i][0] == 'X' && board[i][1] == 'X' && board[i][2] == 'X')
         {
             cout << "You won!";
-            return 2;
+            return 0;
         }
     }
 
@@ -36,14 +36,14 @@ char game_ending_check()
         if (board[0][i] == 'X' && board[1][i] == 'X' && board[2][i] == 'X')
         {
             cout << "You won!";
-            return 2;
+            return 0;
         }
     }
 
     if ((board[0][0] == 'O' && board [1][1] == 'O' && board[2][2] == 'O') or (board[2][0] == 'O' && board [1][1] == 'O' && board[0][2] == 'O'))
     {
         cout << "I won";
-        return 1;
+        return 0;
     }
 
     for (int i = 0; i < ROWS; ++i)
@@ -51,7 +51,7 @@ char game_ending_check()
         if (board[i][0] == 'O' && board[i][1] == 'O' && board[i][2] == 'O')
         {
             cout << "I won";
-            return 1;
+            return 0;
         }
     }
 
@@ -60,7 +60,7 @@ char game_ending_check()
         if (board[0][i] == 'O' && board[1][i] == 'O' && board[2][i] == 'O')
         {
             cout << "I won";
-            return 1;
+            return 0;
         }
     }
 
@@ -100,7 +100,7 @@ void board_display()
         cout << "|" << endl;
     }
 
-    cout << "\t ---\n";
+    cout << "\t ¯¯¯\n";
 }
 
 int main()
@@ -117,15 +117,13 @@ int main()
                        {1, 0}, {1, 1}, {1, 2},
                        {2, 0}, {2, 1}, {2, 2}};
 
-    int probable_move;
-
     while (true)
     {
         board_display();
 
         // game ending check
-        char is_end = game_ending_check();
-        if (is_end >= 0 && is_end <= 2) {
+        if (game_ending_check() == 0) 
+        {
             break;
         }
 
@@ -154,15 +152,15 @@ int main()
         board_display();
 
         // game ending check
-        is_end = game_ending_check();
-        if (is_end >= 0 && is_end <= 2) {
+        if (game_ending_check == 0) 
+        {
             break;
         }
 
         // search for a possible move
         while (true)
         {
-            probable_move = rand() % 9;
+            int probable_move = rand() % 9;
 
             computer_move_row = moves[probable_move][0];
             computer_move_column = moves[probable_move][1];
