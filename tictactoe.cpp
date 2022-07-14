@@ -162,7 +162,7 @@ int main()
 			
 			if (board[moves[probable_move][0]][moves[probable_move][1]] == '.')
 			{
-				board[moves[probable_move][0]][moves[probable_move][1]] == 'O';
+				board[moves[probable_move][0]][moves[probable_move][1]] = 'O';
 				break;
 			}
 		}
