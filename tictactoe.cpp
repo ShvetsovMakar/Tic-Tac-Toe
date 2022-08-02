@@ -120,7 +120,7 @@ int main()
 		board_display();
 
 		// game ending check
-		if (game_ending_check() == true) 
+		if (game_ending_check()) 
 		{
 			break;
 		}
@@ -150,7 +150,7 @@ int main()
 		board_display();
 
 		// game ending check
-		if (game_ending_check() == true) 
+		if (game_ending_check()) 
 		{
 			break;
 		}
