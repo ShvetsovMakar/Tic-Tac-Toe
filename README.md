@@ -1,6 +1,6 @@
 # Tic-Tac-Toe ✏️
 
-This game is made to practice C++ basics
+This game is made to practice C++ basics.
 
 ### Rules
 - You are playing as "X" so you get to make the first move. To make a move you need to input row and column of the cell you want to capture.
