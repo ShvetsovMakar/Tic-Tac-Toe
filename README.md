@@ -2,7 +2,7 @@
 
 This game is made to practice C++ basics
 
-### Usage
+### Rules
 - You are playing as "X" so you get to make the first move. To make a move you need to input row and column of the cell you want to capture.
 - You and computer are making moves one by one.
 - If you manage to get 3 of "X" in a row (vertically, horizontally or diagonally) you win.
